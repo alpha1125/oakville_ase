@@ -11,17 +11,26 @@
 </head>
 <body>
     <div id="map" style="width: 100%; height: 1200px;"></div>
-    <script>
+    
+    
+
+
+<script>
     function formatLatLong(number) {
+        // Use Math.abs to ensure positive formatting, then slice to the required decimal places
         let formatted = Math.abs(number).toFixed(4).slice(0, 7);
+
+        // Handle the case for less than two digits before the decimal
         if (formatted.length < 7) {
             formatted = '0' + formatted;
         }
+
+        // Add the negative sign back if the original number was negative
         return (number < 0 ? '-' : '') + formatted;
     }
 
     // Initialize the map
-    var map = L.map('map').setView([43.4748, -79.7016], 15); // Coordinates for Oakville, Ontario
+    var map = L.map('map').setView([43.4748, -79.7016], 13); // Coordinates for Oakville, Ontario
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -51,7 +60,7 @@
             // Format the coordinates
             var coordinates = "Latitude: " + lat + ", Longitude: " + lng;
 
-var clipBoardVal= "[" + formatLatLong(lat) + ", " + formatLatLong(lng) + "],";
+			var clipBoardVal= "[" + formatLatLong(lat) + ", " + formatLatLong(lng) + "],";
 
             // Copy to clipboard
             navigator.clipboard.writeText(clipBoardVal).then(function() {
@@ -66,128 +75,105 @@ var clipBoardVal= "[" + formatLatLong(lat) + ", " + formatLatLong(lng) + "],";
                 .openPopup();
         });
         
-                var roadSegment1 = L.polyline([
-            [43.4663, -79.7113], // Start coordinate
-            [43.4646, -79.7089]  // End coordinate
-        ], {color: 'red', weight: 5}).addTo(map);
-        
-        
-                        var roadSegment2 = L.polyline([
-        [43.4855, -79.7022],
-        [43.4863, -79.7014],
-        [43.4867, -79.7003],
-        [43.4890, -79.6975],
-        [43.4901, -79.6945],
-        [43.4914, -79.6931]
-        ], {color: 'red', weight: 5}).addTo(map);
+var sixthLine = L.polyline([
+[43.4663, -79.7113],             [43.4646, -79.7089]  
+], {color: 'red', weight: 5}).addTo(map);
 
-                        var roadSegment3 = L.polyline([
-        [43.4914, -79.6931],
-        [43.4941, -79.6969],[43.4944, -79.6981],[43.4945, -79.6992],[43.4946, -79.7001],[43.4952, -79.7014],[43.4952, -79.7028],
-        [43.4945, -79.7068],[43.4940, -79.7077],[43.4917, -79.7105],[43.4910, -79.7113],[43.4902, -79.7119],[43.4893, -79.7120],
-        [43.4889, -79.7123],[43.4886, -79.7126],[43.4882, -79.7131],
-        ], {color: 'red', weight: 5}).addTo(map);
+var glenashtonDrive = L.polyline([
+[43.4855, -79.7022],        [43.4863, -79.7014],        [43.4867, -79.7003],        [43.4890, -79.6975],        [43.4901, -79.6945],        [43.4914, -79.6931]
+], {color: 'red', weight: 5}).addTo(map);
 
-                        var roadSegment4 = L.polyline([
-        [43.4644, -79.7359],[43.4685, -79.7360]
-                ], {color: 'red', weight: 5}).addTo(map);
-                
-                        var roadSegment5 = L.polyline([
-                [43.4506, -79.7548],[43.4522, -79.7528],[43.4531, -79.7527],
-                ], {color: 'red', weight: 5}).addTo(map);
-                
-                        var roadSegment6 = L.polyline([
+var northRidgeTrail = L.polyline([
+[43.4914, -79.6931],        [43.4941, -79.6969],[43.4944, -79.6981],[43.4945, -79.6992],[43.4946, -79.7001],[43.4952, -79.7014],[43.4952, -79.7028],        [43.4945, -79.7068],[43.4940, -79.7077],[43.4917, -79.7105],[43.4910, -79.7113],[43.4902, -79.7119],[43.4893, -79.7120],        [43.4889, -79.7123],[43.4886, -79.7126],[43.4882, -79.7131],
+], {color: 'red', weight: 5}).addTo(map);
+
+var riverGlenBoulevard = L.polyline([
+[43.4644, -79.7359],[43.4685, -79.7360]
+], {color: 'red', weight: 5}).addTo(map);
+
+var pineGlenRd = L.polyline([
+[43.4506, -79.7548],[43.4522, -79.7528],[43.4531, -79.7527],
+], {color: 'red', weight: 5}).addTo(map);
+
+var ColonelWilliamParkway = L.polyline([
 [43.4233, -79.7699],[43.4235, -79.7726],[43.4235, -79.7731],[43.4236, -79.7738],[43.4259, -79.7771],
-                ], {color: 'red', weight: 5}).addTo(map);
+], {color: 'red', weight: 5}).addTo(map);
 
-
-                        var roadSegment7 = L.polyline([
+var rebeccaStreet = L.polyline([
 [43.4012, -79.7165],[43.3969, -79.7210]
-                ], {color: 'red', weight: 5}).addTo(map);
+], {color: 'red', weight: 5}).addTo(map);
 
-                
-    </script>
+var OldAbbeyLane = L.polyline([
+[43.4411, -79.7124],[43.4416, -79.7117],[43.4442, -79.7099],[43.4456, -79.7106],[43.4472, -79.7126],
+], {color: 'red', weight: 5}).addTo(map);
 
-<ul>
-	<li><s>Colonel Williams Parkway from Stocksbridge Avenue/Richview Boulevard to Watercliffe Court</s></li>
-	<li><s>Rebecca Street from Sussex Street to Bronte Road.</s></li>
-	<li><s>Old Abbey Lane between Montrose Abbey Drive and Milton Road/ Northwood Drive</s></li>
-				<script>
-			var roadSegment75 = L.polyline([
-	[43.4411, -79.7124],[43.4416, -79.7117],[43.4442, -79.7099],[43.4456, -79.7106],[43.4472, -79.7126],
-                ], {color: 'red', weight: 5}).addTo(map);
-			</script>
 
-	
-	<li><s>Nottinghill Gate from Runnymead Crescent (easterly intersection) to Beechgrove Crescent</s></li>
+var NottinghillGate = L.polyline([
+[43.4417, -79.7134],[43.4417, -79.7146],[43.4413, -79.7159],[43.4411, -79.7163],[43.4402, -79.7175],[43.4399, -79.7181],[43.4398, -79.7202],[43.4403, -79.7213],[43.4429, -79.7236],[43.4434, -79.7242],[43.4438, -79.7253],	[43.4440, -79.7261],
+], {color: 'red', weight: 5}).addTo(map);
 
-			<script>
-			var roadSegment74 = L.polyline([
-
-[43.4417, -79.7134],[43.4417, -79.7146],[43.4413, -79.7159],[43.4411, -79.7163],[43.4402, -79.7175],[43.4399, -79.7181],
-
-[43.4398, -79.7202],[43.4403, -79.7213],[43.4429, -79.7236],[43.4434, -79.7242],[43.4438, -79.7253],
-	[43.4440, -79.7261],
-	
-                ], {color: 'red', weight: 5}).addTo(map);
-			</script>
-	
-	
-	<li><s>Reynolds Street between Cornwall Road and Sumner Avenue.</s></li>
-			<script>
-			var roadSegment73 = L.polyline([
+var reynoldsSt = L.polyline([
 [43.4556, -79.6790],[43.4545, -79.6767],[43.4538, -79.6755],[43.4497, -79.6684],
-	
-                ], {color: 'red', weight: 5}).addTo(map);
-			</script>
+], {color: 'red', weight: 5}).addTo(map);
 
-	<li><s>Kingsway Drive from Wynten Way/ Winterbourne Drive to Prince John Circle/ Sir David Drive</s></li>
-	
 
-		<script>
-		var roadSegment72 = L.polyline([
-	[43.4950, -79.6637],[43.4973, -79.6625],[43.4986, -79.6615],
-	[43.4986, -79.6615],
-	[43.4995, -79.6615],
-	[43.5027, -79.6617],
-	
-                ], {color: 'red', weight: 5}).addTo(map);
-	</script>
-	
-	
-	<li><s>Westoak Trails Boulevard from Brookhaven Crescent/Arbourview Drive to Colbeck Street/ Amberglen Court</s></li>
-	<script>
-		var roadSegment71 = L.polyline([
-	[43.4362, -79.7543],
-[43.4327, -79.7580],
-[43.4318, -79.7594],
-[43.4309, -79.7603],
-	[43.4294, -79.7630]
-                ], {color: 'red', weight: 5}).addTo(map);
-	</script>
-	
-	
-	<li><s>Pine Glen Road between Newcastle Crescent (westerly intersection) and Proudfoot Trail</s></li>
-	<li><s>Sixth Line from Elm Drive to Upper Middle Road</s></li>
-	<li><s>River Glen Boulevard from Towne Boulevard to Mowat Avenue</s></li>
-	<li><s>Glenashton Drive from Eighth Line to Grand Boulevard</s></li>
-	<li><s>North Ridge Trail between Glenashton Drive and Postridge Drive</s></li>
-	<li><s>Sixteen Mile Drive from Preserve Drive to Larry Crescent/Isaac Avenue</s></li>
-	<script>
-	                        var roadSegment7 = L.polyline([
-[43.4767, -79.7375],[43.4771, -79.7370],[43.4787, -79.7354],[43.4802, -79.7343],[43.4805, -79.7340]
+var KingswayDrive = L.polyline([
+[43.4950, -79.6637],[43.4973, -79.6625],[43.4986, -79.6615],	[43.4986, -79.6615],	[43.4995, -79.6615],	[43.5027, -79.6617],	
+], {color: 'red', weight: 5}).addTo(map);
 
-                ], {color: 'red', weight: 5}).addTo(map);
-	</script>
+var WestoakTrailsBoulevard = L.polyline([
+[43.4362, -79.7543],[43.4327, -79.7580],[43.4318, -79.7594],[43.4309, -79.7603],	[43.4294, -79.7630]
+], {color: 'red', weight: 5}).addTo(map);
 
-	<li><s>Post Road from Dundas Street to Threshing Mill Boulevard</s></li>
-	<script>
-	                        var roadSegment7 = L.polyline([
-	[43.4875, -79.7341],[43.4869, -79.7333],[43.4857, -79.7328],[43.4855, -79.7326],[43.4824, -79.7283],[43.4822, -79.7281],[43.4819, -79.7280],
+
+var PostRoad = L.polyline([
+[43.4875, -79.7341],[43.4869, -79.7333],[43.4857, -79.7328],[43.4855, -79.7326],[43.4824, -79.7283],[43.4822, -79.7281],[43.4819, -79.7280],
 [43.4816, -79.7278],[43.4812, -79.7272]	
-                ], {color: 'red', weight: 5}).addTo(map);
+], {color: 'red', weight: 5}).addTo(map);	                
+
+
+var SixteenMileDrive = L.polyline([
+[43.4767, -79.7375],[43.4771, -79.7370],[43.4787, -79.7354],[43.4802, -79.7343],[43.4805, -79.7340]
+], {color: 'red', weight: 5}).addTo(map);	                
+</script>
+    
+    
+    
+<ul id="addressList">
+	<li data-lat="43.4236" data-lng="-79.7738" data-zoom=15>Colonel Williams Parkway from Stocksbridge Avenue/Richview Boulevard to Watercliffe Court</li>
+	<li data-lat="43.3992" data-lng="-79.7188" data-zoom=15>Rebecca Street from Sussex Street to Bronte Road.</li>
+	<li data-lat="43.4447" data-lng="-79.7120" data-zoom=15>Old Abbey Lane between Montrose Abbey Drive and Milton Road/ Northwood Drive</li>
+	<li data-lat="43.4411" data-lng="-79.7196" data-zoom=15>Nottinghill Gate from Runnymead Crescent (easterly intersection) to Beechgrove Crescent</li>
+	<li data-lat="43.4521" data-lng="-79.6731" data-zoom=15>Reynolds Street between Cornwall Road and Sumner Avenue.</li>
+	<li data-lat="43.4990" data-lng="-79.6619" data-zoom=15>Kingsway Drive from Wynten Way/ Winterbourne Drive to Prince John Circle/ Sir David Drive</li>
+	<li data-lat="43.4334" data-lng="-79.7574" data-zoom=15>Westoak Trails Boulevard from Brookhaven Crescent/Arbourview Drive to Colbeck Street/ Amberglen Court</li>
+	<li data-lat="43.4519" data-lng="-79.7536" data-zoom=17>Pine Glen Road between Newcastle Crescent (westerly intersection) and Proudfoot Trail</li>
+	<li data-lat="43.4655" data-lng="-79.7098" data-zoom=15>Sixth Line from Elm Drive to Upper Middle Road</li>
+	<li data-lat="43.4665" data-lng="-79.7361" data-zoom=15>River Glen Boulevard from Towne Boulevard to Mowat Avenue</li>
+	<li data-lat="43.4886" data-lng="-79.6972" data-zoom=15>Glenashton Drive from Eighth Line to Grand Boulevard</li>
+	<li data-lat="43.4926" data-lng="-79.7030" data-zoom=15>North Ridge Trail between Glenashton Drive and Postridge Drive</li>
+	<li data-lat="43.4788" data-lng="-79.7357" data-zoom=17>Sixteen Mile Drive from Preserve Drive to Larry Crescent/Isaac Avenue</li>
+	<li data-lat="43.4840" data-lng="-79.7300" data-zoom=15>Post Road from Dundas Street to Threshing Mill Boulevard</li>
+
+	<script>
+                
+       // Function to move the map to the clicked address
+        function moveToLocation(lat, lng, zoomLevel) {
+            map.setView(new L.LatLng(lat, lng), zoomLevel);
+        }
+        
+        // Add click event listeners to each address
+        document.querySelectorAll('#addressList li').forEach(function(li) {
+            li.addEventListener('click', function() {
+                var lat = this.getAttribute('data-lat');
+                var lng = this.getAttribute('data-lng');
+                var zoom = this.getAttribute('data-zoom')??15;
+                moveToLocation(lat, lng, zoom); // Adjust zoom level as desired
+            });
+        });
 	</script>
 </ul>
-
 </body>
 </html>
+
+
